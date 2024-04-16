@@ -103,8 +103,6 @@ def eulerian_path_(edges_hash_pop,start_node):
 def depthfirst_eulerian_path_(graph,start):
     paths = []
     stack = {start: [start]}  # Initialize stack as a dictionary
-    #graph=edges_hash
-
     while stack:
         node, path = stack.popitem()
         if node not in graph or not graph[node]:

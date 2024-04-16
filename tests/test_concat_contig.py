@@ -8,9 +8,8 @@ class TestConcat(unittest.TestCase):
 
     def test_concat_contig(self):
 
-        visited = ['TTG','TGC','GCT','CTA','TAG','AGT','GTC','TCA','CAT','ATA']
-
-        exp_contig='TTGCTAGTCATA'
+        visited=['AT', 'TC', 'CA', 'AG', 'GG', 'GT', 'TA', 'AA', 'AC']
+        exp_contig='ATCAGGTAAC'
 
         contig=concat_contig(visited)
 

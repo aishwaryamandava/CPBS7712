@@ -8,15 +8,12 @@ class TestDBG(unittest.TestCase):
 
     def test_build_debruijn_graph(self):
 
-        id_presuffix_dict = {'>test_seq1': [['AT', 'TA'], ['TA', 'AG'],['AG','GT'],['GT','TC'],['TC','CA'],['CA','AT']], 
-                                '>test_seq2': [['TT', 'TG'],['TG','GC'],['GC','CT'],['CT','TA'],['TA','AT']]}
-        
-        exp_edges_hash={
-            'AT': ['TA'],'TA': ['AG', 'AT'],
-            'AG': ['GT'], 'GT': ['TC'],
-            'TC': ['CA'],'CA': ['AT'],
-            'TT': ['TG'],'TG': ['GC'],
-            'GC': ['CT'],'CT': ['TA']}
+        id_presuffix_dict = {'>test_seq1': [['AT', 'TC'],['TC', 'CA'],['CA', 'AG'],['AG', 'GG'],['GG', 'GT'],['GT', 'TA'],['TA', 'AC']],
+                                '>test_seq2': [['GT', 'TA'], ['TA', 'AA'], ['AA', 'AC']]}
+        exp_edges_hash={'AT': ['TC'],'TC': ['CA'],
+                        'CA': ['AG'],'AG': ['GG'],
+                        'GG': ['GT'],'GT': ['TA', 'TA'],
+                        'TA': ['AC', 'AA'],'AA': ['AC']}
 
         edges_hash=build_debruijn_graph(id_presuffix_dict)
 

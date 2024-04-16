@@ -8,17 +8,21 @@ class TestNodeDegree(unittest.TestCase):
 
     def test_calculate_node_degree(self):
 
-        id_presuffix_dict = {'>test_seq1': [['AT', 'TA'], ['TA', 'AG'],['AG','GT'],['GT','TC'],['TC','CA'],['CA','AT']], 
-                                '>test_seq2': [['TT', 'TG'],['TG','GC'],['GC','CT'],['CT','TA'],['TA','AT']]}
+        id_presuffix_dict = {'>test_seq1': [['AT', 'TC'],['TC', 'CA'],['CA', 'AG'],['AG', 'GG'],['GG', 'GT'],['GT', 'TA'],['TA', 'AC']],
+                                '>test_seq2': [['GT', 'TA'], ['TA', 'AA'], ['AA', 'AC']]}
         
-        exp_node_degree = {'AT': [2, 1],'TA': [2, 2],
-            'AG': [1, 1],'GT': [1, 1],
-            'TC': [1, 1],'CA': [1, 1],
-            'TT': [0, 1],'TG': [1, 1],
-            'GC': [1, 1],'CT': [1, 1]}
+        exp_node_degree = {'AT': [0, 1],
+                            'TC': [1, 1],
+                            'CA': [1, 1],
+                            'AG': [1, 1],
+                            'GG': [1, 1],
+                            'GT': [1, 2],
+                            'TA': [2, 2],
+                            'AC': [2, 0],
+                            'AA': [1, 1]}
         
-        exp_start_nodes=['TT']
-        exp_end_nodes=['AT']
+        exp_start_nodes=['AT','GT']
+        exp_end_nodes=[]
 
         nodes_degree, starting_nodes, ending_nodes = calculate_node_degree(id_presuffix_dict)
 
