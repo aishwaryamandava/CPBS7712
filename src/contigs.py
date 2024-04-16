@@ -100,7 +100,7 @@ def eulerian_path_(edges_hash_pop,start_node):
     return eulerian_path 
 
 #### Approach2: traversing the graph using depth first search. This is for the eulerian path.
-def depthfirst_eulerian_path_(graph,start,k_len):
+def depthfirst_eulerian_path_(graph,start):
     paths = []
     stack = {start: [start]}  # Initialize stack as a dictionary
     #graph=edges_hash
@@ -108,7 +108,7 @@ def depthfirst_eulerian_path_(graph,start,k_len):
     while stack:
         node, path = stack.popitem()
         if node not in graph or not graph[node]:
-            paths.append(concat_contig(path,k_len))
+            paths.append(concat_contig(path))
         else:
             for next in graph[node]:
                 if next not in path:
@@ -116,11 +116,11 @@ def depthfirst_eulerian_path_(graph,start,k_len):
     return(paths)
 
 #### Given a list of nodes that are visited, this function returns a contiguous sequence
-def concat_contig(visited,k_len):
+def concat_contig(visited):
     contig=""
     for i,ep in enumerate(visited):
         if i == 0:
             contig+=ep
         else:
-            contig+=ep[k_len-2] 
+            contig+=ep[-1] 
     return contig

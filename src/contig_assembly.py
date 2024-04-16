@@ -29,7 +29,7 @@ contig_len=0
 longest_contig=''
 for i in starting_nodes:
     ep=contigs.eulerian_path_(edges_hash_pop,i)
-    contig=contigs.concat_contig(ep,k_len=args.kmerLen)
+    contig=contigs.concat_contig(ep)
     contig_list['starting_node_'+i]=contig
     if len(contig) > contig_len:
         contig_len=len(contig)
@@ -41,7 +41,7 @@ dfs_contig_list={}
 dfs_contig_len=0
 dfs_longest_contig=''
 for i in starting_nodes:
-    e_paths=contigs.depthfirst_eulerian_path_(edges_hash,start=i,k_len=args.kmerLen)
+    e_paths=contigs.depthfirst_eulerian_path_(edges_hash,start=i)
     for dfs_idx,dfs_contig in enumerate(e_paths):
         dfs_contig_list['contig_start_node_'+i+'_path_'+str(dfs_idx)]=dfs_contig
         if len(dfs_contig) > dfs_contig_len:
@@ -75,11 +75,10 @@ with open(output_path_aln, 'w') as output_file:
         contig_line_write = '\t'.join(map(str, contig_line)) + '\n'
         output_file.write(contig_line_write)
 
-output_path_contigs=os.path.join(args.outputPath,"./CONTIGS.fasta")
-with open(output_path_contigs, 'w') as output_file:
-    #header_line="sseqid\tqseqid\tsstart\tsend\tqstart\tqend\n"
-    for k,v in dfs_contig_list.items():
-        header_line=">"+str(k)+"\n"
-        output_file.write(header_line)
-        contig_line=str(v)+"\n"
-        output_file.write(contig_line)
+#output_path_contigs=os.path.join(args.outputPath,"./CONTIGS.fasta")
+#with open(output_path_contigs, 'w') as output_file:
+ #   for k,v in dfs_contig_list.items():
+  #      header_line=">"+str(k)+"\n"
+   #     output_file.write(header_line)
+    #    contig_line=str(v)+"\n"
+     #   output_file.write(contig_line)

@@ -12,17 +12,11 @@ class TestDBG(unittest.TestCase):
                                 '>test_seq2': [['TT', 'TG'],['TG','GC'],['GC','CT'],['CT','TA'],['TA','AT']]}
         
         exp_edges_hash={
-            'AT': ['TA'],
-            'TA': ['AG'],
-            'AG': ['GT'],
-            'GT': ['TC'],
-            'TC': ['CA'],
-            'CA': ['AT'],
-            'TT': ['TG'],
-            'TG': ['GC'],
-            'GC': ['CT'],
-            'CT': ['TA']
-        }
+            'AT': ['TA'],'TA': ['AG', 'AT'],
+            'AG': ['GT'], 'GT': ['TC'],
+            'TC': ['CA'],'CA': ['AT'],
+            'TT': ['TG'],'TG': ['GC'],
+            'GC': ['CT'],'CT': ['TA']}
 
         edges_hash=build_debruijn_graph(id_presuffix_dict)
 
