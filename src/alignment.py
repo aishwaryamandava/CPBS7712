@@ -51,10 +51,13 @@ def seed_extend_align(query_seq,seed_len,dfs_contig_list,query_to_kmer_index):
     sorted_align_query = dict(sorted(
         ((key, value) for key, value in align_query.items() if 'index' in value and len(value.get('index', [])) > 1 and all(value.get('index', [])[i] <= value.get('index', [])[i+1] for i in range(len(value.get('index', [])) - 1))),
         #key=lambda x: (x[1]['edist/contig_len'])
-        key=lambda x: (-x[1]['contig_len'],x[1]['edist'])
+        key=lambda x: (x[1]['edist'],-x[1]['contig_len'])
     ))
 
-    longest_contig=dfs_contig_list[list(sorted_align_query.keys())[0]]
+    if sorted_align_query:
+        longest_contig=dfs_contig_list[list(sorted_align_query.keys())[0]]
+    else:
+        longest_contig = None
 
     return sorted_align_query,longest_contig
 
